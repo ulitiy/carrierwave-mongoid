@@ -19,7 +19,7 @@ module CarrierWave
     end
 
     def mount_uploaders(column, uploader=nil, options={}, &block)
-      field options[:mount_on] || column, type: Array
+      field options[:mount_on] || column#, type: Array
 
       super
       mount_base(column, uploader, options, &block)
