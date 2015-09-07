@@ -15,7 +15,19 @@ module CarrierWave
       field options[:mount_on] || column
 
       super
+      mount_base(column, uploader, options, &block)
+    end
 
+    def mount_uploaders(column, uploader=nil, options={}, &block)
+      field options[:mount_on] || column, type: Array
+
+      super
+      mount_base(column, uploader, options, &block)
+    end
+
+    private
+
+    def mount_base(column, uploader=nil, options={}, &block)
       alias_method :read_uploader, :read_attribute
       alias_method :write_uploader, :write_attribute
       public :read_uploader
